@@ -5,8 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "build": "echo \"Build completed successfully - Ready for production\"",
-    "dev": "node server.js"
+    "build": "npm install",
+    "dev": "node server.js",
+    "install-deps": "npm install --only=production"
   },
   "repository": {
     "type": "git",
