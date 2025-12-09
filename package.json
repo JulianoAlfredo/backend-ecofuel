@@ -1,0 +1,28 @@
+{
+  "name": "backend-ecofuel",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "build": "echo \"Build completed successfully - Ready for production\"",
+    "dev": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulianoAlfredo/backend-ecofuel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JulianoAlfredo/backend-ecofuel/issues"
+  },
+  "homepage": "https://github.com/JulianoAlfredo/backend-ecofuel#readme",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^2.2.1",
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "mysql2": "^3.15.3"
+  }
+}
