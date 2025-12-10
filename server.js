@@ -6,12 +6,9 @@ const bodyParser = require('body-parser')
 const app = express()
 const port = process.env.PORT || 3001
 
-// Middleware
 app.use(cors())
 app.use(bodyParser.json())
 
-// --- CONFIGURAÇÃO DO BANCO DE DADOS ---
-// As credenciais estão hardcoded como fallback para facilitar o deploy rápido.
 const dbConfig = {
   host: process.env.DB_HOST || 'sql.freedb.tech',
   user: process.env.DB_USER || 'freedb_juliano',
@@ -25,8 +22,6 @@ const dbConfig = {
 const pool = mysql.createPool(dbConfig)
 const promisePool = pool.promise()
 
-// --- INICIALIZAÇÃO E AUTO-MIGRATION ---
-// Cria as tabelas automaticamente se não existirem
 const initDB = async () => {
   try {
     console.log('Verificando estrutura do banco de dados...')
@@ -109,12 +104,10 @@ initDB()
 
 // --- ROTAS DA API ---
 
-// 1. Health Check (Para o Render saber que o app está vivo)
 app.get('/', (req, res) => {
   res.send('EcoFuel Backend is running!')
 })
 
-// 2. Auth (Login)
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body
   try {
@@ -143,7 +136,6 @@ app.post('/api/login', async (req, res) => {
   }
 })
 
-// 3. Register
 app.post('/api/register', async (req, res) => {
   const { name, email, password } = req.body
   try {
@@ -164,7 +156,6 @@ app.post('/api/register', async (req, res) => {
   }
 })
 
-// 4. Vehicles
 app.get('/api/vehicles', async (req, res) => {
   try {
     const [rows] = await promisePool.query('SELECT * FROM vehicles')
@@ -213,7 +204,6 @@ app.delete('/api/vehicles/:id', async (req, res) => {
   }
 })
 
-// 5. Logs
 app.get('/api/logs', async (req, res) => {
   try {
     const [rows] = await promisePool.query(
